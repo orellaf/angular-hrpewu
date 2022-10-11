@@ -9,10 +9,16 @@ import { Product } from '../products';
 })
 export class CartComponent implements OnInit {
   products: Product[] | undefined;
+  total: number |undefined;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.products = this.cartService.getItems();
+    this.total = this.products.map(( p) =>  p.price).reduce((sum, p) => sum + p);
+  }
+
+  delete(product: Product) {
+    this.cartService.deleteProduct(product)
   }
 }

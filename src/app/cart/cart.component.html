@@ -1,5 +1,13 @@
+<h3>Cart</h3>
+
 <div *ngIf="products">
-  <div *ngFor="let product of products">
-    <p>{{ product.name }} : {{ product.price | currency }}</p>
+  <div *ngFor="let product of products" class="cart-item">
+    <p>{{ product.name }} : {{ product.price | currency }}</p> <button (click)="delete(product)" type="button">delete</button>
   </div>
+
 </div>
+
+<app-shipping></app-shipping>
+
+
+<div>Total: {{ total }}</div>
