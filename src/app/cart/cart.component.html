@@ -1,5 +1,7 @@
 <h3>Cart</h3>
 
+<a [routerLink]="['/shipping']">Shipping prices</a>
+
 <div *ngIf="products">
   <div *ngFor="let product of products" class="cart-item">
     <p>{{ product.name }} : {{ product.price | currency }}</p> <button (click)="delete(product)" type="button">delete</button>
@@ -8,6 +10,21 @@
 </div>
 
 <app-shipping></app-shipping>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" >
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name">
+  </div>
+
+  <div>
+    <label for="address">Address</label>
+    <input type="text" id="address" formControlName="address">
+  </div>
+
+
+  <button class="button">Purchase</button>
+</form>
 
 
 <div>Total: {{ total }}</div>
